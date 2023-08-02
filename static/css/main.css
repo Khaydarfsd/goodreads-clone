@@ -1,0 +1,42 @@
+body {
+    background-color: ;
+}
+
+.container {
+    background-color: #FFEECC;
+}
+
+
+.profile-pic {
+    width: 150px;
+    hieght: 150px;
+    border-radius: 50%;
+}
+
+.small-profile-pic {
+    width: 100px;
+    hieght: 100px;
+}
+
+.cover-pic {
+    width: 180px;
+    hieght: 280px;
+}
+
+
+.stars label{
+    float: right;
+	font-size: 25px;
+	margin-bottom: 3px;
+}
+
+.stars input{
+	display: none;
+}
+
+.stars input:hover ~ label {
+    color: gold;
+}
+.stars input:checked ~ label{
+	color: gold;
+}

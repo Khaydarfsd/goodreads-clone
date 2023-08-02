@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %} Edit review {% endblock title %}
+
+{% block content %}
+
+    <h3>delete review</h3>
+
+    <p><b>Book:</b> {{ book.title }}</p>
+    <p><b>Comment:</b> {{ review.comment }}</p>
+
+    <a class="btn btn-outline-danger" href="{% url 'books:delete_review' book.id review.id %}">Yes</a>
+    <a class="btn btn-outline-primary" href="{% url 'books:detail' book.id %}">No</a>
+
+{% endblock content %}

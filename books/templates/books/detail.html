@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Book detail page{% endblock title %}
+
+{% block content %}
+
+
+<div class="">
+
+    <div class="row mb-3">
+        <div class="source row">
+            <div class="col-12 col-md-auto text-center text-md-start">
+                <img class="cover-pic me-3" src="{{ book.cover_picture.url }}" alt="Cover picture">
+            </div>
+            <div class="col text-center text-md-start">
+                <h4 class=" theme-bg-light">{{ book.title }}</h4>
+                <span class="fst-italic">
+                    Authored by
+                    {% for book_author in book.bookauthor_set.all %}
+                        {% if forloop.last %}
+                            {{ book_author.author.full_name }}
+                        {% else %}
+                            {{ book_author.author.full_name }},
+                        {% endif %}
+                    {% endfor %}
+                </span>
+                <div class="p-3 source-name">{{ book.description }}</div>
+            </div>
+        </div>
+    </div>
+
+
+    <form method="post" action="{% url 'books:reviews' book.id %}">{% csrf_token %}
+        <div class="stars float-start ps-0 mb-3">
+            <input type="radio" id="five" name="star" value="5">
+            <label for="five">
+                <i class="fa-solid fa-star"></i>
+            </label>
+            <input type="radio" id="four" name="star" value="4">
+            <label for="four">
+                <i class="fa-solid fa-star "></i>
+            </label>
+            <input type="radio" id="three" name="star" value="3">
+            <label for="three">
+                <i class="fa-solid fa-star"></i>
+            </label>
+            <input type="radio" id="two" name="star" value="2">
+            <label for="two">
+                <i class="fa-solid fa-star"></i>
+            </label>
+            <input type="radio" id="one" name="star" value="1">
+            <label for="one">
+                <i class="fa-solid fa-star"></i>
+            </label>
+
+        </div>
+        <div class="mb-3 col-md-4">
+            {{ review_form | crispy }}
+            {% csrf_token %}
+            <button class="btn btn-success">Add review</button>
+        </div>
+    </form>
+
+
+    {% if book.bookreview_set.exists %}
+        <h4>Reviews</h4> <hr>
+
+        {% for review in book.bookreview_set.all %}
+            <div class="row">
+                <div class="col-md-1 me-3 mb-3">
+                    <img class="small-profile-pic" src="{{ review.user.profile_picture.url }}" alt="Comment Profile">
+                </div>
+                <div class="col-md-7">
+                    <b>{{ review.user.username }}</b> rated it
+                        <i class="fa-sharp text-warning fa-solid fa-star"></i>
+                        <i class="{% if review.stars_given >= 2 %}fa-sharp text-warning {% endif %}fa-solid fa-star"></i>
+                        <i class="{% if review.stars_given >= 3 %}fa-sharp text-warning {% endif %}fa-solid fa-star"></i>
+                        <i class="{% if review.stars_given >= 4 %}fa-sharp text-warning {% endif %}fa-solid fa-star"></i>
+                        <i class="{% if review.stars_given >= 5 %}fa-sharp text-warning {% endif %}fa-solid fa-star"></i>
+                        <span class="fw-lighter">{{ review.created_at }}</span>
+                        {% if review.user == request.user %}
+                            <a href="{% url 'books:edit_review' book.id review.id %}"><i class="bi bi-pen"></i></a>
+                            <a href="{% url 'books:confirm_delete_review' book.id review.id %}"><i class="bi bi-trash3"></i></a>
+                        {% endif %}
+                    <p class="font-monospace">{{ review.comment }}</p>
+
+
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+</div>
+
+
+
+{% endblock content %}

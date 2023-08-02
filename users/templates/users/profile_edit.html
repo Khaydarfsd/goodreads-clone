@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Edit Profile{% endblock title %}
+
+{% block content %}
+
+    <div class="wrapper bg-white mt-sm-5">
+        <h4 class="pb-4 border-bottom">Edit Profile</h4>
+        <div class="d-flex align-items-start py-3 border-bottom">
+            <img src="https://images.pexels.com/photos/1037995/pexels-photo-1037995.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                class="img me-3" alt="">
+            <div class="pl-sm-4 pl-2" id="img-section">
+                <b>Profile Photo</b>
+                <p>Accepted file type .png. Less than 1MB</p>
+                <button class="btn button border"><b>Upload</b></button>
+            </div>
+        </div>
+        <div class="py-2">
+            <div class="row py-2">
+                <div class="col-md-12">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        {{ form | crispy }}
+                        <button class="btn btn-primary mr-3" type="submit">Save changes</button>
+                        <a class="btn btn-outline-primary" href="{% url 'users:profile' %}">Cancel</a>
+                    </form>
+                </div>
+            </div>
+            <div class="d-sm-flex align-items-center pt-3" id="deactivate">
+                <div>
+                    <b>Deactivate your account</b>
+                    <p>Details about your company account and password</p>
+                </div>
+                <div class="ml-auto">
+                    <button class="btn danger">Deactivate</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock content %}

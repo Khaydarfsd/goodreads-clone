@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} Edit review {% endblock title %}
+
+{% block content %}
+
+    <h3>Edit review</h3>
+
+    <form method="post" action="{% url 'books:edit_review' book.id review.id %}">{% csrf_token %}
+        <div class="stars float-start ps-0 mb-3">
+            <input type="radio" id="five" name="star" value="5">
+            <label for="five">
+                <i class="fa-solid fa-star"></i>
+            </label>
+            <input type="radio" id="four" name="star" value="4">
+            <label for="four">
+                <i class="fa-solid fa-star "></i>
+            </label>
+            <input type="radio" id="three" name="star" value="3">
+            <label for="three">
+                <i class="fa-solid fa-star"></i>
+            </label>
+            <input type="radio" id="two" name="star" value="2">
+            <label for="two">
+                <i class="fa-solid fa-star"></i>
+            </label>
+            <input type="radio" id="one" name="star" value="1">
+            <label for="one">
+                <i class="fa-solid fa-star"></i>
+            </label>
+
+        </div>
+        <div class="mb-3 col-md-4">
+            {{ review_form | crispy }}
+            {% csrf_token %}
+            <button class="btn btn-success">Save</button>
+        </div>
+    </form>
+
+{% endblock content %}

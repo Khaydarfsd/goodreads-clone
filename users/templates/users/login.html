@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Login{% endblock title %}
+
+{% block content %}
+
+
+    <div class="row py-3 wrapper bg-white mt-sm-5">
+        <h4 class="pb-4 border-bottom text-center">Login</h4>
+        <div class="py-2">
+            <div class="row py-2">
+                <div class="col-md-12">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        {{ login_form | crispy }}
+                        <button class="btn btn-primary mr-3" type="submit">Login</button>
+                        <span class="ms-3">No account? Then, <a class="text-decoration-none" href="{% url 'users:register' %}">get registered.</a></span>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
