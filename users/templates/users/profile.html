@@ -6,13 +6,11 @@
 
 
         <div class=" image d-flex flex-column justify-content-center align-items-center">
-            <button class="btn btn-light">
-                <img src="{{ user.profile_picture.url }}" class='profile-pic' alt="Profile picture">
-            </button>
+            <img src="{{ user.profile_picture.url }}" class='profile-pic' alt="Profile picture">
             <span class="name mt-3">{{ user.first_name }} {{ user.last_name }}</span>
             <span class="idd">@{{ user.username }}</span>
             <div class=" d-flex mt-2">
-                <a class="btn btn-dark" href="{% url 'users:profile_edit' %}">Edit profile</a>
+                <a class="btn btn-outline-success" href="{% url 'users:profile_edit' %}">Edit profile</a>
             </div>
             <div class="gap-3 mt-3 icons d-flex flex-row justify-content-center align-items-center">
                 <a href="#"><i class="fa-brands fa-twitter"></i></a>

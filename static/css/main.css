@@ -1,11 +1,10 @@
 body {
-    background-color: ;
+    background-color: #FFFFFF;
 }
 
 .container {
-    background-color: #FFEECC;
+    background-color: #ffffff;
 }
-
 
 .profile-pic {
     width: 150px;
@@ -40,3 +39,25 @@ body {
 .stars input:checked ~ label{
 	color: gold;
 }
+
+.media-1 {
+    text-align: left; }
+
+.media-1 img {
+    border-radius: 20px; }
+
+.media-1 .loc .icon-room {
+    position: relative; }
+
+.media-1 .loc .icon-room:after {
+    content: "";
+    width: 24px;
+    height: 24px;
+    background: rgba(26, 55, 77, 0.1);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border-radius: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); }

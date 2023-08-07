@@ -23,7 +23,7 @@ class BooksView(View):
         if search_query:
             books = books.filter(title__icontains=search_query)
 
-        page_size = request.GET.get('page_size', 4)
+        page_size = request.GET.get('page_size', 18)
         paginator = Paginator(books, page_size)
 
         page_num = request.GET.get('page', 1)
